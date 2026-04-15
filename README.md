@@ -1,10 +1,5 @@
 # Probabilistic Forecasting of EUR/USD Using Graph Neural Networks
 
-**Final Year Project — Willard Lee Si Ang (0206502)**
-**UOW Malaysia KDU Penang University College**
-**Bachelor of Computer Science (Hons) — June 2025**
-
----
 
 ## Architecture: Temporal Graph Transformer (TGT)
 

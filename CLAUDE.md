@@ -1,9 +1,5 @@
 # Temporal Graph Transformer — EUR/USD Forex Forecasting
 
-## What this is
-Final year project (CCP3012N) for BSc Computer Science at UOW Malaysia KDU Penang.
-Student: Willard Lee Si Ang (0206502). Supervisor: Prof. Dr. J. Joshua Thomas.
-
 ## Architecture
 Temporal Graph Transformer (TGT) — NOT the old GAT-LSTM (v1 failed, GAT hurt performance).
 
