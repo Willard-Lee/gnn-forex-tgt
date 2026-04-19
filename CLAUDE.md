@@ -23,7 +23,6 @@ Stack 30 snapshots → Transformer encoder → [CLS] → shared FC →
 - All 24 indicators computed from pure pandas/numpy. No TA-Lib dependency.
 - EUR/USD single pair only (multi-pair is future work).
 - This is academic proof-of-concept. NOT live trading. NOT financial advice.
-
 ## Tech stack
 - Python 3.10+, PyTorch, pandas, numpy, scikit-learn, scipy
 - NO PyTorch Geometric (manual GAT implementation, graph is small enough)
@@ -33,27 +32,31 @@ Stack 30 snapshots → Transformer encoder → [CLS] → shared FC →
 ## Project structure
 ```
 configs/config.py          — all hyperparameters (dataclasses)
-utils/data_pipeline.py     — OHLCV → 24 indicators → targets → sequences ✅ DONE
+utils/data_pipeline.py     — OHLCV → 24 indicators → targets → sequences
 utils/graph_builder.py     — dynamic multi-edge graph (Pearson+DCC+Granger)
-models/temporal_graph_transformer.py — main TGT model
-models/layers.py           — GAT layer, Transformer encoder
-utils/trainer.py           — training loop with walk-forward
-utils/evaluator.py         — metrics, significance tests
-utils/backtester.py        — strategy simulation with friction
-baselines/                 — LSTM, RF, MA crossover, buy-and-hold
-app.py                     — Streamlit dashboard
-main.py                    — CLI entry point
+models/temporal_graph_transformer.py — main TGT model (~598K params)
+models/layers.py           — GATLayer, MultiHeadGAT, GATBlock, PositionalEncoding
+utils/trainer.py           — walk-forward trainer + node feature augmentation
+utils/evaluator.py         — metrics, significance tests, Diebold-Mariano
+utils/backtester.py        — strategy simulation with ATR stops + circuit breaker
+baselines/lstm_baseline.py — 2-layer LSTM baseline
+baselines/rf_baseline.py   — Random Forest baseline
+baselines/ma_baseline.py   — EMA(20)/EMA(50) crossover baseline
+baselines/buy_and_hold.py  — Always-long baseline
+baselines/run_baselines.py — Runner for all baselines across walk-forward folds
+app.py                     — Streamlit dashboard (5 pages)
+main.py                    — CLI entry point (pipeline/train/walkforward/baselines/full/dashboard)
 ```
 
 ## Build order (phases)
 - [x] Phase 1: Data pipeline + config
-- [ ] Phase 2: Graph builder (dynamic, multi-edge)
-- [ ] Phase 3: Model (TGT architecture)
-- [ ] Phase 4: Trainer (walk-forward, multi-task loss)
-- [ ] Phase 5: Evaluator (metrics, t-tests, confusion matrices)
-- [ ] Phase 6: Backtester (ATR stops, circuit breaker, realistic costs)
-- [ ] Phase 7: Baselines (LSTM, RF, MA, buy-and-hold)
-- [ ] Phase 8: Dashboard (Streamlit)
+- [x] Phase 2: Graph builder (dynamic, multi-edge)
+- [x] Phase 3: Model (TGT architecture)
+- [x] Phase 4: Trainer (walk-forward, multi-task loss)
+- [x] Phase 5: Evaluator (metrics, t-tests, confusion matrices)
+- [x] Phase 6: Backtester (ATR stops, circuit breaker, realistic costs)
+- [x] Phase 7: Baselines (LSTM, RF, MA, buy-and-hold)
+- [x] Phase 8: Dashboard (Streamlit)
 
 ## 24 indicator nodes
 Momentum: RSI_14, MACD, MACD_Signal, Stochastic_K, Stochastic_D, Williams_R, CCI, ROC, MFI, CMO

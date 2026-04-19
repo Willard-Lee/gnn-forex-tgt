@@ -1,5 +1,5 @@
 """
-Evaluator for Temporal Graph Transformer v2.
+Evaluator for Temporal Graph Transformer
 
 Computes metrics across walk-forward folds:
   - Direction: accuracy, per-class precision/recall/F1, confusion matrix
