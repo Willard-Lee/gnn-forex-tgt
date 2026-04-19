@@ -1,5 +1,5 @@
 """
-Training loop for Temporal Graph Transformer v2.
+Training loop for Temporal Graph Transformer 
 
 Handles:
   - Node feature augmentation (raw → [raw, z-score, 3d-slope, 5d-vol])

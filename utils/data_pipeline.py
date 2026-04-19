@@ -1,5 +1,5 @@
 """
-Data Pipeline for Temporal Graph Transformer EUR/USD Forecasting v2.
+Data Pipeline for Temporal Graph Transformer EUR/USD Forecasting 
 
 Pipeline order (strict no-leakage):
   1. Fetch/load OHLCV data

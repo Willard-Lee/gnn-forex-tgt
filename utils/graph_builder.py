@@ -1,5 +1,5 @@
 """
-Dynamic Multi-Edge Graph Builder for Temporal Graph Transformer v2.
+Dynamic Multi-Edge Graph Builder for Temporal Graph Transformer 
 
 Builds a graph over 24 technical indicator nodes with three edge types:
   1. Pearson correlation (30-day trailing window)
